@@ -1,17 +1,19 @@
 <p align="center">
-  <img src="docs/assets/social-preview.png" alt="Awesome Server Stack — drop legacy infra" width="100%">
+  <img src="docs/assets/catalog-cover.png" alt="Awesome Server Stack — drop legacy infra" width="100%">
 </p>
 
 # 🖧 Awesome Server Stack 2026
 
 > **Drop legacy infra. Benchmarks, not vibes.**
-> Curated from 137K+ GitHub repos · live-verified against the GitHub API · October 2026
+> Curated from a GitHub API snapshot of 137K+ repositories · October 2026
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![Tools](https://img.shields.io/badge/tools-55%2B%20gamechangers-blue)](#-decision-matrix)
 [![Agent Ready](https://img.shields.io/badge/agent--optimized-✓-brightgreen)](#-agent-query-api)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](../../compare)
 [![Last Updated](https://img.shields.io/badge/updated-October%202026-orange)](.)
+
+**🧭 Explore:** [Contents](#contents) · [Web servers](#-web-servers--edge-proxies) · [Caching](#-cache-in-memory-stores) · [Deployment](#-self-host-paas--deploy) · [Decision matrix](#-decision-matrix)
 
 ---
 
