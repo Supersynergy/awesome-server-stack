@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/catalog-cover.png" alt="Awesome Server Stack — drop legacy infra" width="100%">
+  <img src="docs/assets/catalog-cover.png" alt="Awesome Server Stack" width="100%">
 </p>
 
 # 🖧 Awesome Server Stack 2026
