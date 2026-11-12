@@ -34,18 +34,46 @@ Every entry here has a story like that. Let's go.
 
 ## ⚡ TL;DR — Top 10 Drops Right Now
 
-| Drop this | Use this instead | Real gain |
-|-----------|-----------------|-----------|
-| `Apache` vhost sprawl + certbot | [Caddy] | automatic HTTPS + HTTP/3 · 2-line config |
-| "nginx or nothing" reflex | [Pingora] · [Sōzu] | programmable Rust proxy · runtime-configured, no reloads |
-| `Express` on Node | [Elysia] / [Hono] on [Bun] | ~10× RPS in minimal benches · web-standard APIs |
-| Redis *cluster* ops | [Dragonfly] | one process, ~3.4× a realistic cluster client |
-| `memcached` | [Garnet] · [Pogocache] · [Dragonfly] | protocol-compatible, multithreaded, modern |
-| The Vercel/Netlify bill | [Coolify] · [Dokploy] · [Kamal] | PaaS DX on a €5 VPS you own |
-| `mod_php` / archived `unit` | [FrankenPHP] | Go app server · worker mode · Early Hints |
-| `varnish` runbooks | [Vinyl Cache] | the rename — same project, new name, new forge |
-| Hand-rolled auth | [Better Auth] | framework-agnostic TS auth, orgs/sessions/2FA built-in |
-| Hand-typed REST clients | [tRPC] · [Encore] | end-to-end types · infra-from-code |
+- **`Apache` vhost sprawl + certbot**<br>
+  Use this instead: [Caddy]<br>
+  Real gain: automatic HTTPS + HTTP/3 · 2-line config
+
+- **"nginx or nothing" reflex**<br>
+  Use this instead: [Pingora] · [Sōzu]<br>
+  Real gain: programmable Rust proxy · runtime-configured, no reloads
+
+- **`Express` on Node**<br>
+  Use this instead: [Elysia] / [Hono] on [Bun]<br>
+  Real gain: ~10× RPS in minimal benches · web-standard APIs
+
+- **Redis *cluster* ops**<br>
+  Use this instead: [Dragonfly]<br>
+  Real gain: one process, ~3.4× a realistic cluster client
+
+- **`memcached`**<br>
+  Use this instead: [Garnet] · [Pogocache] · [Dragonfly]<br>
+  Real gain: protocol-compatible, multithreaded, modern
+
+- **The Vercel/Netlify bill**<br>
+  Use this instead: [Coolify] · [Dokploy] · [Kamal]<br>
+  Real gain: PaaS DX on a €5 VPS you own
+
+- **`mod_php` / archived `unit`**<br>
+  Use this instead: [FrankenPHP]<br>
+  Real gain: Go app server · worker mode · Early Hints
+
+- **`varnish` runbooks**<br>
+  Use this instead: [Vinyl Cache]<br>
+  Real gain: the rename — same project, new name, new forge
+
+- **Hand-rolled auth**<br>
+  Use this instead: [Better Auth]<br>
+  Real gain: framework-agnostic TS auth, orgs/sessions/2FA built-in
+
+- **Hand-typed REST clients**<br>
+  Use this instead: [tRPC] · [Encore]<br>
+  Real gain: end-to-end types · infra-from-code
+
 
 ---
 
@@ -118,16 +146,38 @@ September 2025: Varnish Cache → **[Vinyl Cache]**. GitHub org **archived**, de
 
 Quick pick: **[Caddy]** for servers, **[Pingora]** for programmable proxy, **[Sōzu]** for hot-reconfig.
 
-| Drop this | Use this | Why |
-|-----------|----------|-----|
-| Apache | [Caddy] | auto-HTTPS, HTTP/3, sane config — the default pick |
-| nginx config sprawl | [Pingora] | proxy *logic* in Rust code, Cloudflare-proven |
-| reload-for-every-change | [Sōzu] | runtime-reconfigurable Rust reverse proxy, zero-reload |
-| "the default" | [Traefik] | cloud-native: labels/service-discovery → routes itself |
-| heavyweight service mesh | [Envoy] | the data plane everyone else fronts |
-| any of the above for static | [sws] | static-file server in Rust, single binary, HTTP/2+compression |
-| classic L4/L7 | [HAProxy] | still the reference for reliability; actively maintained |
-| nginx+Lua | [OpenResty] | the platform Pingora is replacing — huge installed base |
+- **Apache**<br>
+  Use this: [Caddy]<br>
+  Why: auto-HTTPS, HTTP/3, sane config — the default pick
+
+- **nginx config sprawl**<br>
+  Use this: [Pingora]<br>
+  Why: proxy *logic* in Rust code, Cloudflare-proven
+
+- **reload-for-every-change**<br>
+  Use this: [Sōzu]<br>
+  Why: runtime-reconfigurable Rust reverse proxy, zero-reload
+
+- **"the default"**<br>
+  Use this: [Traefik]<br>
+  Why: cloud-native: labels/service-discovery → routes itself
+
+- **heavyweight service mesh**<br>
+  Use this: [Envoy]<br>
+  Why: the data plane everyone else fronts
+
+- **any of the above for static**<br>
+  Use this: [sws]<br>
+  Why: static-file server in Rust, single binary, HTTP/2+compression
+
+- **classic L4/L7**<br>
+  Use this: [HAProxy]<br>
+  Why: still the reference for reliability; actively maintained
+
+- **nginx+Lua**<br>
+  Use this: [OpenResty]<br>
+  Why: the platform Pingora is replacing — huge installed base
+
 
 - **[Caddy]** — 78K★ Go server; TLS is a side-effect, not a task. *When NOT:* exotic upstream modules nginx has matured for a decade (check module parity first).
 - **[Pingora]** — see AHA #2. Trait-based request lifecycle: `early_request_filter`, `upstream_peer`, `response_filter`. Building a cache/WAF/edge feature = writing a method.
@@ -155,16 +205,38 @@ Quick pick: **[FrankenPHP]** for PHP · **[Bun]** for JS/TS · **[uWebSockets]**
 
 Quick pick: **[Elysia]** or **[Hono]** on Bun · **[axum]** on Rust · **[Gin]**/**[Fiber]** on Go · **[Fastify]** if you must stay Node.
 
-| Framework | The one-liner | Bench note |
-|-----------|--------------|------------|
-| [Elysia] | Bun-native, end-to-end types, ~232K RPS class | Top-3 JS on the-benchmarker (Oct 2026 run) |
-| [Hono] | Web-standard API — same code on Bun/Deno/CF Workers/Node | the portable pick |
-| [Fastify] | Node's fast, schema-validated incumbent | ~19K RPS realistic (Sharkbench) |
-| [axum] | Tower-native Rust routing, tower middleware | top-3 Rust consistently |
-| [Gin] | Go's familiar workhorse | 89K★, everywhere |
-| [Fiber] | Express-feel on Go's fasthttp | migrating Express teams |
-| [Nitro] | the server toolkit under Nuxt — deploy anywhere | one codebase, every target |
-| [Encore] | infra-as-code in Go/TS — declare queues/DBs in source | the "backend platform" bet |
+- **[Elysia]**<br>
+  The one-liner: Bun-native, end-to-end types, ~232K RPS class<br>
+  Bench note: Top-3 JS on the-benchmarker (Oct 2026 run)
+
+- **[Hono]**<br>
+  The one-liner: Web-standard API — same code on Bun/Deno/CF Workers/Node<br>
+  Bench note: the portable pick
+
+- **[Fastify]**<br>
+  The one-liner: Node's fast, schema-validated incumbent<br>
+  Bench note: ~19K RPS realistic (Sharkbench)
+
+- **[axum]**<br>
+  The one-liner: Tower-native Rust routing, tower middleware<br>
+  Bench note: top-3 Rust consistently
+
+- **[Gin]**<br>
+  The one-liner: Go's familiar workhorse<br>
+  Bench note: 89K★, everywhere
+
+- **[Fiber]**<br>
+  The one-liner: Express-feel on Go's fasthttp<br>
+  Bench note: migrating Express teams
+
+- **[Nitro]**<br>
+  The one-liner: the server toolkit under Nuxt — deploy anywhere<br>
+  Bench note: one codebase, every target
+
+- **[Encore]**<br>
+  The one-liner: infra-as-code in Go/TS — declare queues/DBs in source<br>
+  Bench note: the "backend platform" bet
+
 
 > **Honest benchmark note:** minimal-HTTP leaderboards (The Benchmarker, Sharkbench) measure router+serializer speed, not *your* app. They eliminate frameworks that are genuinely slow — they don't rank production fitness. Use them to disqualify, then pick on ecosystem + types. That's the method this whole list runs on.
 
@@ -174,14 +246,30 @@ Quick pick: **[Elysia]** or **[Hono]** on Bun · **[axum]** on Rust · **[Gin]**
 
 Quick pick: **[Dragonfly]** single-node power · **[Valkey]** license-safe · **[Garnet]**/.NET · **[Pogocache]** newcomer.
 
-| Store | Stars | The angle |
-|-------|-------|-----------|
-| [Dragonfly] | 32K | ~3.4× a realistic Redis cluster, one process (see AHA #3) |
-| [Valkey] | 27K | Linux Foundation Redis fork — the governance-safe default |
-| [Garnet] | 12K | Microsoft Research: RESP-compatible, cluster+storage+replication |
-| [Pogocache] | 2.5K | new (tidwall): low-latency, CPU-efficient, Redis+Memcache+HTTP protocols |
-| [KeyDB] | 12.5K | multithreaded Redis fork — still valid on Redis lineage |
-| [memcached] | 14K | the original; still correct for pure ephemeral KV |
+- **[Dragonfly]**<br>
+  Stars: 32K<br>
+  The angle: ~3.4× a realistic Redis cluster, one process (see AHA #3)
+
+- **[Valkey]**<br>
+  Stars: 27K<br>
+  The angle: Linux Foundation Redis fork — the governance-safe default
+
+- **[Garnet]**<br>
+  Stars: 12K<br>
+  The angle: Microsoft Research: RESP-compatible, cluster+storage+replication
+
+- **[Pogocache]**<br>
+  Stars: 2.5K<br>
+  The angle: new (tidwall): low-latency, CPU-efficient, Redis+Memcache+HTTP protocols
+
+- **[KeyDB]**<br>
+  Stars: 12.5K<br>
+  The angle: multithreaded Redis fork — still valid on Redis lineage
+
+- **[memcached]**<br>
+  Stars: 14K<br>
+  The angle: the original; still correct for pure ephemeral KV
+
 
 - ⚠️ **[groupcache]** — the famous Go library — last push 2024-11 and effectively unmaintained. Learn its idea (peer-filled, no-invalidation cache), don't adopt the repo.
 - 🧪 **[cache-benchmarks]** (tidwall) — *the meta-tool*: Memcache vs Redis vs Valkey vs Dragonfly vs Garnet vs Pogocache, ~15K runs, median-of-31. Before you believe any vendor number, run this on your hardware.
@@ -223,20 +311,54 @@ Quick pick: **[Vinyl Cache]** (the Varnish succession) · **[Apache Traffic Serv
 
 The tools above are only half the answer — the methods are where the speed actually comes from:
 
-| Method | Layer | What it buys you |
-|--------|-------|------------------|
-| `stale-while-revalidate` | HTTP | serve stale instantly, refresh in background — hits stay instant even at expiry |
-| `stale-if-error` | HTTP | origin dies → cache keeps serving; uptime as a config line |
-| **Surrogate/purge keys** | HTTP/CDN | tag responses (`Surrogate-Key: product:42`), purge by tag — precise invalidation, no TTL guessing |
-| `Cache-Status` header | HTTP | debug hit/miss per hop — stop guessing why it's slow |
-| **103 Early Hints** | HTTP | send `<link preload>` before the response is ready — browser starts fetching CSS/fonts early |
-| **Request coalescing** | app | N concurrent misses → 1 origin fetch (Go `singleflight`, or built-in in Caffeine/Moka) |
-| **Cache-aside** | app | read-through pattern: check cache → miss → load → store. The default to start from |
-| **Write-through / write-behind** | app | write to cache+DB together, or cache-first and drain asynchronously |
-| **RESP3 client-side caching** | app | Redis 6+/Valkey/Dragonfly push invalidations to the client — local speed, remote truth |
-| **W-TinyLFU admission** | app | Caffeine/Moka's eviction: keep what a frequency-sketch predicts you'll reuse |
-| **Tiered + shield cache** | edge | edge PoPs → one shield node → origin; origin sees ~1 fetch, not 300 |
-| **Version-stamped keys** | app | `user:42:v17` — bump version on write; no "forgot to purge" bugs |
+- **`stale-while-revalidate`**<br>
+  Layer: HTTP<br>
+  What it buys you: serve stale instantly, refresh in background — hits stay instant even at expiry
+
+- **`stale-if-error`**<br>
+  Layer: HTTP<br>
+  What it buys you: origin dies → cache keeps serving; uptime as a config line
+
+- **Surrogate/purge keys**<br>
+  Layer: HTTP/CDN<br>
+  What it buys you: tag responses (`Surrogate-Key: product:42`), purge by tag — precise invalidation, no TTL guessing
+
+- **`Cache-Status` header**<br>
+  Layer: HTTP<br>
+  What it buys you: debug hit/miss per hop — stop guessing why it's slow
+
+- **103 Early Hints**<br>
+  Layer: HTTP<br>
+  What it buys you: send `<link preload>` before the response is ready — browser starts fetching CSS/fonts early
+
+- **Request coalescing**<br>
+  Layer: app<br>
+  What it buys you: N concurrent misses → 1 origin fetch (Go `singleflight`, or built-in in Caffeine/Moka)
+
+- **Cache-aside**<br>
+  Layer: app<br>
+  What it buys you: read-through pattern: check cache → miss → load → store. The default to start from
+
+- **Write-through / write-behind**<br>
+  Layer: app<br>
+  What it buys you: write to cache+DB together, or cache-first and drain asynchronously
+
+- **RESP3 client-side caching**<br>
+  Layer: app<br>
+  What it buys you: Redis 6+/Valkey/Dragonfly push invalidations to the client — local speed, remote truth
+
+- **W-TinyLFU admission**<br>
+  Layer: app<br>
+  What it buys you: Caffeine/Moka's eviction: keep what a frequency-sketch predicts you'll reuse
+
+- **Tiered + shield cache**<br>
+  Layer: edge<br>
+  What it buys you: edge PoPs → one shield node → origin; origin sees ~1 fetch, not 300
+
+- **Version-stamped keys**<br>
+  Layer: app<br>
+  What it buys you: `user:42:v17` — bump version on write; no "forgot to purge" bugs
+
 
 > **The order that works:** measure → `Cache-Control` headers done right → in-process cache → HTTP edge cache → external store. Every layer you skip is a network hop you never pay for.
 
@@ -269,39 +391,130 @@ Quick pick: **[tRPC]** typesafe APIs · **[Better Auth]** auth · **[undici]** H
 
 ## 🎯 Decision Matrix
 
-| I want to... | Pick | Runner-up |
-|--------------|------|-----------|
-| Serve HTTPS sites without thinking | [Caddy] | [sws] (static-only) |
-| Build custom proxy/cache logic | [Pingora] | [Envoy] (config-first) |
-| Reconfigure proxy without reloads | [Sōzu] | [Traefik] (discovery-driven) |
-| Route in Kubernetes/Docker | [Traefik] | [Envoy] |
-| Serve a static dir, single binary | [sws] | [Caddy] `file_server` |
-| Run PHP fast in 2026 | [FrankenPHP] | PHP-FPM (shared hosting) |
-| JS/TS runtime for speed | [Bun] | [Deno] (correctness-first) |
-| Max RPS out of JS | [uWebSockets]-based | [Elysia] on [Bun] |
-| Portable edge framework | [Hono] | [Elysia] (Bun-first) |
-| Fast Node incumbent | [Fastify] | [Nitro] |
-| Rust API | [axum] | actix-web |
-| Go API | [Gin] | [Fiber] |
-| Deploy like Vercel, own the box | [Coolify] | [Dokploy] |
-| Docker deploys, no orchestrator | [Kamal] | [Dokku] |
-| Replace Redis single-node | [Dragonfly] | [Valkey] |
-| Replace memcached | [Dragonfly] / [Garnet] | [Pogocache] |
-| License-clean Redis fork | [Valkey] | [KeyDB] |
-| .NET-native cache-store | [Garnet] | — |
-| Verify vendor cache claims | [cache-benchmarks] | your own memtier run |
-| In-process cache (Java) | [Caffeine] | — |
-| In-process cache (Rust) | [Moka] | [Foyer] (mem+disk) |
-| In-process cache (Go) | [Ristretto] | — |
-| In-process cache (Python) | [cachetools] | [diskcache] (persistent) |
-| In-process cache (Node) | [cacheable] | — |
-| Cache HTTP responses (Py) | [requests-cache] | — |
-| Full HTTP accelerator | [Vinyl Cache] | [Apache Traffic Server] |
-| Edge cache with zero new infra | nginx `proxy_cache` | [Pingora] |
-| Typesafe API end-to-end | [tRPC] | [Encore] |
-| Auth I don't have to build | [Better Auth] | — |
-| Serve stale while refreshing | SWR headers | see [Playbook](#-caching-methods-playbook) |
-| Kill thundering-herd on miss | request coalescing | `proxy_cache_lock` |
+- **Serve HTTPS sites without thinking**<br>
+  Pick: [Caddy]<br>
+  Runner-up: [sws] (static-only)
+
+- **Build custom proxy/cache logic**<br>
+  Pick: [Pingora]<br>
+  Runner-up: [Envoy] (config-first)
+
+- **Reconfigure proxy without reloads**<br>
+  Pick: [Sōzu]<br>
+  Runner-up: [Traefik] (discovery-driven)
+
+- **Route in Kubernetes/Docker**<br>
+  Pick: [Traefik]<br>
+  Runner-up: [Envoy]
+
+- **Serve a static dir, single binary**<br>
+  Pick: [sws]<br>
+  Runner-up: [Caddy] `file_server`
+
+- **Run PHP fast in 2026**<br>
+  Pick: [FrankenPHP]<br>
+  Runner-up: PHP-FPM (shared hosting)
+
+- **JS/TS runtime for speed**<br>
+  Pick: [Bun]<br>
+  Runner-up: [Deno] (correctness-first)
+
+- **Max RPS out of JS**<br>
+  Pick: [uWebSockets]-based<br>
+  Runner-up: [Elysia] on [Bun]
+
+- **Portable edge framework**<br>
+  Pick: [Hono]<br>
+  Runner-up: [Elysia] (Bun-first)
+
+- **Fast Node incumbent**<br>
+  Pick: [Fastify]<br>
+  Runner-up: [Nitro]
+
+- **Rust API**<br>
+  Pick: [axum]<br>
+  Runner-up: actix-web
+
+- **Go API**<br>
+  Pick: [Gin]<br>
+  Runner-up: [Fiber]
+
+- **Deploy like Vercel, own the box**<br>
+  Pick: [Coolify]<br>
+  Runner-up: [Dokploy]
+
+- **Docker deploys, no orchestrator**<br>
+  Pick: [Kamal]<br>
+  Runner-up: [Dokku]
+
+- **Replace Redis single-node**<br>
+  Pick: [Dragonfly]<br>
+  Runner-up: [Valkey]
+
+- **Replace memcached**<br>
+  Pick: [Dragonfly] / [Garnet]<br>
+  Runner-up: [Pogocache]
+
+- **License-clean Redis fork**<br>
+  Pick: [Valkey]<br>
+  Runner-up: [KeyDB]
+
+- **.NET-native cache-store**<br>
+  Pick: [Garnet]<br>
+  Runner-up: —
+
+- **Verify vendor cache claims**<br>
+  Pick: [cache-benchmarks]<br>
+  Runner-up: your own memtier run
+
+- **In-process cache (Java)**<br>
+  Pick: [Caffeine]<br>
+  Runner-up: —
+
+- **In-process cache (Rust)**<br>
+  Pick: [Moka]<br>
+  Runner-up: [Foyer] (mem+disk)
+
+- **In-process cache (Go)**<br>
+  Pick: [Ristretto]<br>
+  Runner-up: —
+
+- **In-process cache (Python)**<br>
+  Pick: [cachetools]<br>
+  Runner-up: [diskcache] (persistent)
+
+- **In-process cache (Node)**<br>
+  Pick: [cacheable]<br>
+  Runner-up: —
+
+- **Cache HTTP responses (Py)**<br>
+  Pick: [requests-cache]<br>
+  Runner-up: —
+
+- **Full HTTP accelerator**<br>
+  Pick: [Vinyl Cache]<br>
+  Runner-up: [Apache Traffic Server]
+
+- **Edge cache with zero new infra**<br>
+  Pick: nginx `proxy_cache`<br>
+  Runner-up: [Pingora]
+
+- **Typesafe API end-to-end**<br>
+  Pick: [tRPC]<br>
+  Runner-up: [Encore]
+
+- **Auth I don't have to build**<br>
+  Pick: [Better Auth]<br>
+  Runner-up: —
+
+- **Serve stale while refreshing**<br>
+  Pick: SWR headers<br>
+  Runner-up: see [Playbook](#-caching-methods-playbook)
+
+- **Kill thundering-herd on miss**<br>
+  Pick: request coalescing<br>
+  Runner-up: `proxy_cache_lock`
+
 
 ---
 
