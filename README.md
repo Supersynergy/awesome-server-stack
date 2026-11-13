@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/catalog-cover.png" alt="Awesome Server Stack" width="300" align="right">
+  <img src="docs/assets/catalog-cover.png" alt="Awesome Server Stack" width="960">
 </p>
 
 # 🖧 Awesome Server Stack 2026
